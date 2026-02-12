@@ -18,6 +18,14 @@ O projeto utiliza um pipeline de agentes inteligentes para processar e analisar 
 * **Backend**: Flask (Python) com suporte a CORS.
 * **Frontend**: Interface responsiva com Glassmorphism, CSS puro e Vanilla JavaScript.
 
+<img width="1917" height="916" alt="Image" src="https://github.com/user-attachments/assets/d93df33f-a651-42e6-bb67-1e0890994f45" />
+
+
+<img width="1914" height="922" alt="Image" src="https://github.com/user-attachments/assets/777a77ec-729a-4790-adcd-851f4fa40212" />
+
+
+<img width="1913" height="920" alt="Image" src="https://github.com/user-attachments/assets/b5429d83-ebaf-4c59-869a-281ef85caa85" />
+
 ---
 
 ## Instalação e Configuração
