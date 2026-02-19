@@ -1,0 +1,10 @@
+2025-11-20 10:00:01 INFO [AuthService] User 'alice' logged in successfully from IP 192.168.1.10
+2025-11-20 10:05:23 INFO [DataService] Retrieved 50 records for dashboard view.
+2025-11-20 10:15:00 INFO [WebServer] GET /images/logo.png 200 OK
+2025-11-20 11:00:01 WARN [AuthService] Failed login attempt for user 'admin' from IP 203.0.113.5
+2025-11-20 11:00:02 WARN [AuthService] Failed login attempt for user 'admin' from IP 203.0.113.5
+2025-11-20 11:00:03 WARN [AuthService] Failed login attempt for user 'admin' from IP 203.0.113.5
+2025-11-20 11:00:05 CRITICAL [AuthService] Multiple failed logins detected from single IP 203.0.113.5
+2025-11-20 11:30:00 ERROR [DBService] Syntax error in query: SELECT * FROM users WHERE id = '1' OR '1'='1'
+2025-11-20 11:30:01 WARN [WAF] Possible SQL Injection detected on endpoint /api/users
+2025-11-20 12:00:00 INFO [FileService] Large file transfer initiated (5GB) to unknown external IP 45.33.22.11
