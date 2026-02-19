@@ -21,6 +21,8 @@ O fluxo principal está no `main.py`:
 	- se crítico: bloqueio simulado + registro blockchain;
 	- caso contrário: monitoramento.
 
+<img width="1555" height="611" alt="Image" src="https://github.com/user-attachments/assets/338f4c3b-049b-45d9-93e8-20f6a31d6855" />
+
 ---
 
 ## Tecnologias
