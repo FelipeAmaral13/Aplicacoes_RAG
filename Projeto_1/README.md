@@ -18,6 +18,14 @@ O fluxo de trabalho do agente segue um grafo de estados cíclico:
 2.  **Tools (Node):** Se necessário, o agente invoca a ferramenta `check_security_policy` para buscar contextos relevantes no PDF processado.
 3.  **Loop:** O resultado da busca é anexado ao histórico de mensagens e o agente decide se agora pode responder ou se precisa de mais buscas.
 
+<img width="1911" height="917" alt="Image" src="https://github.com/user-attachments/assets/7be3b55a-dc1c-40cd-8487-2d1d8699cbfa" />
+
+<img width="1916" height="921" alt="Image" src="https://github.com/user-attachments/assets/5e5014c0-03af-415b-9e4c-5f933f8208bc" />
+
+
+<img width="1913" height="915" alt="Image" src="https://github.com/user-attachments/assets/56e7822d-7468-44fe-a771-b3604e352ba3" />
+
+
 ## Pré-requisitos
 
 * Python 3.10+
