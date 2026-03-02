@@ -1,0 +1,22 @@
+POLÍTICA DE DESENVOLVIMENTO SEGURO E ENGENHARIA DE SOFTWARE - VERSÃO 2026
+EMPRESA: DSATECHCORP SOLUTIONS
+
+1. INTRODUÇÃO
+Esta política estabelece as diretrizes obrigatórias para o desenvolvimento de software na DSATechCorp.
+
+2. CREDENCIAIS E SEGREDOS (Página 2)
+2.1. É estritamente proibido hardcodar (inserir diretamente no código) senhas, chaves de API, tokens ou strings de conexão de banco de dados.
+2.2. Todas as credenciais devem ser carregadas via variáveis de ambiente ou cofres de senhas (Vaults).
+
+3. TRATAMENTO DE EXCEÇÕES E ERROS (Página 3)
+3.1. O uso de 'System.out.println' ou 'e.printStackTrace()' para log de erros é proibido em produção.
+3.2. Deve-se utilizar frameworks de log robustos (ex: Log4j, SLF4J).
+3.3. É proibido capturar exceções genéricas (catch Exception e) sem tratamento específico ou re-lançamento, pois isso oculta falhas críticas.
+
+4. INJEÇÃO DE SQL E DADOS (Página 4)
+4.1. Concatenação de strings para formar queries SQL é proibida.
+4.2. O uso de PreparedStatement ou ORMs é obrigatório para prevenir SQL Injection.
+
+5. PADRÕES DE CODIFICAÇÃO E NOMENCLATURA (Página 5)
+5.1. Nomes de classes devem usar PascalCase.
+5.2. Nomes de variáveis e métodos devem usar camelCase e ser descritivos (proibido usar variáveis como 'x', 'temp', 'a').
