@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevSecOps Watchtower</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+
+  <!-- ── HEADER ── -->
+  <header>
+    <div class="logo">
+      <div class="logo-icon">🛡️</div>
+      <div class="logo-text">
+        <h1>DevSecOps Watchtower</h1>
+        <span>GUARDIÃO INTELIGENTE DE VULNERABILIDADES</span>
+      </div>
+    </div>
+    <div class="header-status">
+      <span><span class="status-dot"></span>SISTEMA ATIVO</span>
+      <span>PORTAS 5555 · 5556</span>
+      <span id="clock">--:--:--</span>
+    </div>
+  </header>
+
+  <!-- ── SEVERITY CARDS ── -->
+  <div class="cards-row">
+    <div class="sev-card low">
+      <div class="sev-icon">🟢</div>
+      <div class="sev-info">
+        <label>Low</label>
+        <div class="sev-count" id="cnt-LOW">{{ counts.LOW }}</div>
+      </div>
+    </div>
+    <div class="sev-card medium">
+      <div class="sev-icon">🟡</div>
+      <div class="sev-info">
+        <label>Medium</label>
+        <div class="sev-count" id="cnt-MEDIUM">{{ counts.MEDIUM }}</div>
+      </div>
+    </div>
+    <div class="sev-card high">
+      <div class="sev-icon">🟠</div>
+      <div class="sev-info">
+        <label>High</label>
+        <div class="sev-count" id="cnt-HIGH">{{ counts.HIGH }}</div>
+      </div>
+    </div>
+    <div class="sev-card crit">
+      <div class="sev-icon">🔴</div>
+      <div class="sev-info">
+        <label>Critical</label>
+        <div class="sev-count" id="cnt-CRITICAL">{{ counts.CRITICAL }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MAIN GRID ── -->
+  <div class="main-grid">
+
+    <!-- LOG STREAM (esquerda) -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">
+          <span class="dot" style="background:var(--accent)"></span>
+          Input Stream — Porta 5555
+        </div>
+        <span class="badge" id="log-count">0 eventos</span>
+      </div>
+      <div class="panel-body">
+        <table>
+          <thead>
+            <tr>
+              <th>Hora</th>
+              <th>Origem</th>
+              <th>Mensagem</th>
+            </tr>
+          </thead>
+          <tbody id="log-body">
+            {% for log in logs %}
+            <tr>
+              <td class="ts">{{ log.timestamp }}</td>
+              <td class="src">{{ log.source }}</td>
+              <td class="msg">{{ log.get('raw_log', log.get('message', '')) }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ALERTS (direita) -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">
+          <span class="dot" style="background:var(--red)"></span>
+          Ameaças Detectadas — IA
+        </div>
+        <span class="badge" id="alert-count">0 alertas</span>
+      </div>
+      <div class="panel-body">
+        <table>
+          <thead>
+            <tr>
+              <th>Hora</th>
+              <th>Severidade</th>
+              <th>Categoria</th>
+              <th>Reasoning</th>
+            </tr>
+          </thead>
+          <tbody id="alert-body">
+            {% for alert in alerts %}
+            {% set t = alert.triage %}
+            <tr>
+              <td class="ts">{{ alert.received_at }}</td>
+              <td><span class="sev sev-{{ t.severity }}">{{ t.severity }}</span></td>
+              <td class="src">{{ t.category }}</td>
+              <td class="msg">{{ t.reasoning[:80] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- FIX PANEL (rodapé full-width) -->
+    <div class="panel fix-panel">
+      <div class="panel-header">
+        <div class="panel-title">
+          <span class="dot" style="background:var(--green)"></span>
+          AI Auto-Fix Proposal
+        </div>
+        <span class="badge" id="fix-badge">aguardando</span>
+      </div>
+      <div id="fix-area" class="fix-empty">
+        <span style="color:var(--accent)">◈</span>
+        Aguardando detecção de ameaças para gerar plano de correção...
+      </div>
+    </div>
+
+  </div><!-- /.main-grid -->
+
+  <!-- Auto-reload a cada 5 segundos -->
+  <script>setInterval(() => location.reload(), 5000);</script>
+
+  <!-- Passa estado inicial do servidor para o JS -->
+  <script>
+    window.INITIAL_LOG_COUNT   = {{ logs|length }};
+    window.INITIAL_ALERT_COUNT = {{ alerts|length }};
+  </script>
+  <!-- Socket.IO client -->
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+</body>
+</html>
