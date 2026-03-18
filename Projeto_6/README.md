@@ -20,6 +20,8 @@ As duas stacks usam ZeroMQ no padrao PUB/SUB:
 - Porta `5555`: stream de logs (`LOG`)
 - Porta `5556`: stream de alertas (`ALERT`)
 
+<img width="1914" height="926" alt="Image" src="https://github.com/user-attachments/assets/5fc80fc9-28b5-4b20-86c0-972aa99aa4df" />
+
 ## Arquitetura
 
 ### Stack Web (principal)
